@@ -11,7 +11,7 @@ The latest documentation for cyvcf2 can be found here:
 If you use cyvcf2, please cite the [paper](https://academic.oup.com/bioinformatics/article/2971439/cyvcf2)
 
 
-Fast python **(2 and 3)** parsing of VCF and BCF including region-queries.
+Fast Python **(3.7+)** parsing of VCF and BCF including region-queries.
 
 
 [![Build](https://github.com/brentp/cyvcf2/actions/workflows/build.yml/badge.svg)](https://github.com/brentp/cyvcf2/actions/workflows/build.yml)
@@ -98,12 +98,10 @@ SETUPTOOLS_USE_DISTUTILS=stdlib pip install cyvcf2
 
 ```
 git clone --recursive https://github.com/brentp/cyvcf2
-pip install -r requirements.txt
-# sometimes it can be required to remove old files:
-# python setup.py clean_ext
-CYVCF2_HTSLIB_MODE=BUILTIN CYTHONIZE=1 python setup.py install
+cd cyvcf2
+CYVCF2_HTSLIB_MODE=BUILTIN python -m pip install .
 # or to use a system htslib.so
-CYVCF2_HTSLIB_MODE=EXTERNAL python setup.py install
+CYVCF2_HTSLIB_MODE=EXTERNAL python -m pip install .
 ```
 
 On **OSX**, using brew, you may have to set the following as indicated by the brew install:
