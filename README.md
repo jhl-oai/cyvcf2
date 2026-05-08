@@ -87,24 +87,27 @@ Assuming you have already built and installed htslib version 1.12 or higher.
 CYVCF2_HTSLIB_MODE=EXTERNAL pip install --no-binary cyvcf2 cyvcf2
 ```
 
-## windows (experimental, only test on MSYS2)
+## windows (experimental, only tested on MSYS2)
 
 Assuming you have already built and installed htslib.
 ```
-SETUPTOOLS_USE_DISTUTILS=stdlib pip install cyvcf2
+CYVCF2_HTSLIB_MODE=EXTERNAL pip install cyvcf2
 ```
 
 ## github (building htslib and cyvcf2 from source)
 
 ```
 git clone --recursive https://github.com/brentp/cyvcf2
-pip install -r requirements.txt
-# sometimes it can be required to remove old files:
-# python setup.py clean_ext
-CYVCF2_HTSLIB_MODE=BUILTIN CYTHONIZE=1 python setup.py install
+cd cyvcf2
+CYVCF2_HTSLIB_MODE=BUILTIN python -m pip install .
 # or to use a system htslib.so
-CYVCF2_HTSLIB_MODE=EXTERNAL python setup.py install
+CYVCF2_HTSLIB_MODE=EXTERNAL python -m pip install .
 ```
+
+Source builds use scikit-build-core and CMake. Python build dependencies such
+as Cython, NumPy, CMake, and Ninja are installed by PEP 517 build isolation, but
+you still need a C compiler plus the htslib native dependencies for your
+platform.
 
 On **OSX**, using brew, you may have to set the following as indicated by the brew install:
 
